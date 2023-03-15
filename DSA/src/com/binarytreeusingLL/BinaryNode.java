@@ -2,7 +2,12 @@ package com.binarytreeusingLL;
 
 public class BinaryNode 
 {
-	BinaryNode left;
+	BinaryNode leftNode;
 	int value;
-	BinaryNode right;
+	BinaryNode rightNode;
+	
+	public BinaryNode(int value)
+	{
+		this.value = value;
+	}
 }
