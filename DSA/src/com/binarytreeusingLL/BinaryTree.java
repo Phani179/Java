@@ -4,5 +4,8 @@ public class BinaryTree
 {
 	BinaryNode rootNode;
 	
-	
+	public void insert(int value)
+	{
+		
+	}
 }
