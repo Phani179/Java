@@ -24,5 +24,6 @@ public class RunnerClass
         System.out.println();
         tree.show();
         System.out.println();
+        tree.search("N3");
     }
 }
