@@ -7,6 +7,7 @@ public class BinarySearchTree
 {
 	BinaryNode rootNode;
 	
+	// Insertion Method.
 	public void insert(int value)
 	{
 		BinaryNode node = new BinaryNode(value);
