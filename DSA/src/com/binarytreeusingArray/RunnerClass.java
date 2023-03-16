@@ -15,6 +15,10 @@ public class RunnerClass
         tree.insert("N8");
         tree.insert("N9");
         tree.preOrder(1);
-//        tree.show();
+        System.out.println();
+        tree.postOrder(1);
+        System.out.println();
+        tree.show();
+        System.out.println();
     }
 }

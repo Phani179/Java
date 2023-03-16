@@ -22,6 +22,18 @@ public class BinaryTree
     	preOrder(index * 2 + 1);
     }
     
+    //PostOrder Method.
+    public void postOrder(int index)
+    {
+    	if(index > lastUsedIndex)
+    	{
+    		return;
+    	}
+    	postOrder(index * 2);
+    	postOrder(index * 2 + 1);
+    	System.out.print(binaryTree[index]+" ");
+    }
+    
     // Insert Method.
     public void insert(String value)
     {
