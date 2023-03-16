@@ -108,8 +108,19 @@ public class BinaryTree
 		}
     }
     
+    // Delete Entire BinaryTree
+    public void deleteBT()
+    {
+    	binaryTree = null;
+    	System.out.println("Binary Tree is deleted.");
+    }
+    
     public void show()
     {
+    	if(binaryTree == null)
+    	{
+    		return;
+    	}
     	for(int i = 1; i <= lastUsedIndex; i++)
     	{
     		System.out.print(binaryTree[i]+" ");
