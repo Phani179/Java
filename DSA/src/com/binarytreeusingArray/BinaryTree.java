@@ -46,6 +46,15 @@ public class BinaryTree
     	inOrder(index * 2 + 1);
     }
     
+    // Level Order.
+    public void levelOrder() 
+    {
+    	for(int i = 1; i <= lastUsedIndex; i++)
+        {
+        	System.out.print(binaryTree[i]+" ");
+        }
+    }
+    
     // Insert Method.
     public void insert(String value)
     {
