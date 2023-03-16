@@ -9,7 +9,20 @@ public class BinaryTree
     {
         binaryTree = new String[length + 1];
     }
-
+    
+    // PreOrder Method.
+    public void preOrder(int index)
+    {
+    	if(index > lastUsedIndex)
+    	{
+    		return;
+    	}
+    	System.out.print(binaryTree[index]+" ");
+    	preOrder(index * 2);
+    	preOrder(index * 2 + 1);
+    }
+    
+    // Insert Method.
     public void insert(String value)
     {
         if(lastUsedIndex == binaryTree.length - 1)
