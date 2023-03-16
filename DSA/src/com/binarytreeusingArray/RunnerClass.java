@@ -25,5 +25,7 @@ public class RunnerClass
         tree.show();
         System.out.println();
         tree.search("N3");
+        tree.delete("N5");
+        tree.show();
     }
 }

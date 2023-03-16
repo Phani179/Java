@@ -87,6 +87,27 @@ public class BinaryTree
         binaryTree[lastUsedIndex] = value;
     }
     
+    // Deleting a Node
+    public void delete(String val)
+    {
+    	int location = search(val);
+    	if(location == 0)
+    	{
+    		System.out.println("Tree is Null");
+    		return;
+    	}
+    	else if(location == -1)
+    	{
+    		System.out.println("Element is not present in the Tree");
+    	}
+    	else 
+    	{
+    		binaryTree[location] = binaryTree[lastUsedIndex];
+    		lastUsedIndex--;
+    		System.out.println("Node Deleted Successfully");
+		}
+    }
+    
     public void show()
     {
     	for(int i = 1; i <= lastUsedIndex; i++)
