@@ -61,7 +61,7 @@ public class BinaryTree
         if(lastUsedIndex == 0)
         {
             System.out.println("Tree is Null");
-            return;
+            return -1;
         }
         for(int i = 1; i < lastUsedIndex; i++)
         {
