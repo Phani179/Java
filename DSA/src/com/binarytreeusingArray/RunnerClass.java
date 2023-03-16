@@ -18,6 +18,8 @@ public class RunnerClass
         System.out.println();
         tree.postOrder(1);
         System.out.println();
+        tree.inOrder(1);
+        System.out.println();
         tree.show();
         System.out.println();
     }
