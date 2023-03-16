@@ -1,3 +1,5 @@
+package com.binarytreeusingArray;
+
 public class BinaryTree
 {
     String binaryTree[];
@@ -17,5 +19,13 @@ public class BinaryTree
         }
         lastUsedIndex++;
         binaryTree[lastUsedIndex] = value;
+    }
+    
+    public void show()
+    {
+    	for(int i = 1; i <= lastUsedIndex; i++)
+    	{
+    		System.out.print(binaryTree[i]+" ");
+    	}
     }
 }

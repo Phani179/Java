@@ -1,3 +1,5 @@
+package com.binarytreeusingArray; 
+
 public class RunnerClass
 {
     public static void main(String args[])
@@ -7,6 +9,7 @@ public class RunnerClass
         tree.insert("N2");
         tree.insert("N3");
         tree.insert("N4");
-
+        
+        tree.show();
     }
 }
