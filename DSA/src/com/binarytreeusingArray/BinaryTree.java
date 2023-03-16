@@ -55,6 +55,26 @@ public class BinaryTree
         }
     }
     
+    // Search Method.
+    public int search(String value)
+    {
+        if(lastUsedIndex == 0)
+        {
+            System.out.println("Tree is Null");
+            return;
+        }
+        for(int i = 1; i < lastUsedIndex; i++)
+        {
+            if(binaryTree[i] == value)
+            {
+                System.out.println("Element Found : "+i);
+                return i;
+            }
+        }
+        System.out.println("Element Not Found");
+        return -1;
+    }
+    
     // Insert Method.
     public void insert(String value)
     {
