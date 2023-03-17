@@ -49,17 +49,19 @@ public class BinarySearchTree
 		}
 		else if(rootNode.value >= value)
 		{
-			return insert(rootNode.leftNode, value);
+			rootNode.leftNode = insert(rootNode.leftNode, value);
+			return rootNode;
 		}
 		else
 		{
-			return insert(rootNode.rightNode, value);
+			rootNode.rightNode = insert(rootNode.rightNode, value);
+			return rootNode;
 		}
 	}
 	
 	public void insert(int value)
 	{
-		insert(rootNode,value);
+		rootNode= insert(rootNode,value);
 	}
 	
 	public void show()
