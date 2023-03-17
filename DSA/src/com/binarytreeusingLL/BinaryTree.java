@@ -7,6 +7,7 @@ public class BinaryTree
 {
 	BinaryNode rootNode;
 	
+	// Insert Method.
 	public void insert(int value)
 	{
 		BinaryNode node = new BinaryNode(value);
@@ -42,6 +43,7 @@ public class BinaryTree
 		}
 	}
 	
+	// Deepest Node.
 	public BinaryNode findingDeepestNode()
 	{
 		Queue<BinaryNode> queue = new LinkedList<>();
@@ -62,6 +64,7 @@ public class BinaryTree
 		return presentNode;
 	}
 	
+	// Delete Deepest Node.
 	public void deleteDeepestNode()
 	{
 		Queue<BinaryNode> binaryNodes = new LinkedList<>();
@@ -92,6 +95,7 @@ public class BinaryTree
 		}
 	}
 	
+	// Delete a Node in Binary Tree.
 	public void deleteNode(int value)
 	{
 		Queue<BinaryNode> binaryNodes = new LinkedList<>();
