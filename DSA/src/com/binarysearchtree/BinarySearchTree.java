@@ -64,6 +64,43 @@ public class BinarySearchTree
 		rootNode= insert(rootNode,value);
 	}
 	
+	// PreOrder Traversal.
+	public void preOrder(BinaryNode rootNode)
+	{
+		if(rootNode == null)
+		{
+			return;
+		}
+		System.out.print(rootNode.value+" ");
+		preOrder(rootNode.leftNode);
+		preOrder(rootNode.rightNode);
+	}
+	
+	// InOrder Traversal.
+	public void inOrder(BinaryNode rootNode)
+	{
+		if(rootNode == null)
+		{
+			return;
+		}
+		inOrder(rootNode.leftNode);
+		System.out.print(rootNode.value+" ");
+		inOrder(rootNode.rightNode);
+	}
+	
+	// PostOrder Traversal.
+	public void postOrder(BinaryNode rootNode)
+	{
+		if(rootNode == null)
+		{
+			return;
+		}
+		postOrder(rootNode.leftNode);
+		postOrder(rootNode.rightNode);
+		System.out.print(rootNode.value+" ");
+	}
+	
+	// LevelOrder Traversal Method is used in show() method.
 	public void show()
 	{
 		if(rootNode == null)

@@ -14,5 +14,11 @@ public class Runner
 		binarySearchTree.insert(20);
 		binarySearchTree.insert(40);
 		binarySearchTree.show();
+		System.out.println();
+		binarySearchTree.preOrder(binarySearchTree.rootNode);
+		System.out.println();
+		binarySearchTree.inOrder(binarySearchTree.rootNode);
+		System.out.println();
+		binarySearchTree.postOrder(binarySearchTree.rootNode);
 	}
 }
