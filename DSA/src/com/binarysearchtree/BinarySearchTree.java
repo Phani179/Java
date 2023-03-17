@@ -7,40 +7,67 @@ public class BinarySearchTree
 {
 	BinaryNode rootNode;
 	
-	// Insertion Method.
-	public void insert(int value)
+//	// Insertion Method. --> O(N)
+//	public void insert(int value)
+//	{
+//		BinaryNode node = new BinaryNode(value);
+//		if(rootNode == null)
+//		{
+//			rootNode = node;
+//			return;
+//		}
+//		Queue<BinaryNode> queue = new LinkedList<>();
+//		queue.add(rootNode);
+//		while(!queue.isEmpty())
+//		{
+//			BinaryNode presentNode = queue.remove();
+//			if(presentNode.leftNode != null && presentNode.value >= value)
+//			{
+//				queue.add(presentNode.leftNode);
+//			}
+//			else if(presentNode.rightNode != null && presentNode.value < value)
+//			{
+//				queue.add(presentNode.rightNode);
+//			}
+//			else if(presentNode.leftNode == null && presentNode.value >= value)
+//			{
+//				presentNode.leftNode = node;
+//			}
+//			else {
+//				presentNode.rightNode = node;
+//			}
+//		}
+//	}
+	
+	// Insert method. --> O(log N)
+	private BinaryNode insert(BinaryNode rootNode, int value)
 	{
-		BinaryNode node = new BinaryNode(value);
 		if(rootNode == null)
 		{
-			rootNode = node;
-			return;
+			BinaryNode newBinaryNode = new BinaryNode(value);
+			return newBinaryNode;
 		}
-		Queue<BinaryNode> queue = new LinkedList<>();
-		queue.add(rootNode);
-		while(!queue.isEmpty())
+		else if(rootNode.value >= value)
 		{
-			BinaryNode presentNode = queue.remove();
-			if(presentNode.leftNode != null && presentNode.value >= value)
-			{
-				queue.add(presentNode.leftNode);
-			}
-			else if(presentNode.rightNode != null && presentNode.value < value)
-			{
-				queue.add(presentNode.rightNode);
-			}
-			else if(presentNode.leftNode == null && presentNode.value >= value)
-			{
-				presentNode.leftNode = node;
-			}
-			else {
-				presentNode.rightNode = node;
-			}
+			return insert(rootNode.leftNode, value);
 		}
+		else
+		{
+			return insert(rootNode.rightNode, value);
+		}
+	}
+	
+	public void insert(int value)
+	{
+		insert(rootNode,value);
 	}
 	
 	public void show()
 	{
+		if(rootNode == null)
+		{
+			return;
+		}
 		Queue<BinaryNode> queue = new LinkedList<>();
 		queue.add(rootNode);
 		while(!queue.isEmpty())
