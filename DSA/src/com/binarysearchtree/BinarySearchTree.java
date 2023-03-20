@@ -3,6 +3,8 @@ package com.binarysearchtree;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.xml.crypto.NodeSetData;
+
 public class BinarySearchTree 
 {
 	BinaryNode rootNode;
@@ -74,6 +76,66 @@ public class BinarySearchTree
 		System.out.print(rootNode.value+" ");
 		preOrder(rootNode.leftNode);
 		preOrder(rootNode.rightNode);
+	}
+	
+	// Minimum Node.
+	public BinaryNode minimuNode(BinaryNode node)
+	{
+		if(node.leftNode == null)
+		{
+			return node;
+		}
+		return minimuNode(node.leftNode);
+	}
+	
+	// Delete Node.
+	public BinaryNode deleteNode(BinaryNode rootNode, int value)
+	{
+		if(rootNode == null)
+		{
+			System.out.println("Element is Not Found in the Binary Search Tree");
+			return null;
+		}
+		else if(value < rootNode.value)
+		{
+			rootNode.leftNode = deleteNode(rootNode.leftNode, value);
+		}
+		else if(value > rootNode.value)
+		{
+			rootNode.rightNode = deleteNode(rootNode.rightNode, value);
+		}
+		else {
+			if(rootNode.leftNode != null && rootNode.rightNode != null)	// Node has Two childern.
+			{
+				BinaryNode minNodeforRight = minimuNode(rootNode.rightNode);
+				rootNode.value = minNodeforRight.value;
+				rootNode.rightNode = deleteNode(rootNode.rightNode, minNodeforRight.value);
+			}
+			else if(rootNode.leftNode != null)	// Node has one left childern.
+			{
+				rootNode = rootNode.leftNode;
+			}
+			else if (rootNode.rightNode != null) // Node has one right children.
+			{
+				rootNode = rootNode.rightNode;
+			}
+			else 	// Node to be deleted is a Leaf Node.
+			{
+				rootNode = null;
+			}
+		}
+		return rootNode;
+	}
+	
+	// Delete Method Caller.
+	public void delete(int value) {
+		deleteNode(rootNode, value);
+	}
+	
+	// Delete entire BST.
+	public void deleteBST()
+	{
+		this.rootNode = null; 
 	}
 	
 	// InOrder Traversal.
