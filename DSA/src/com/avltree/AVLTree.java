@@ -49,7 +49,7 @@ public class AVLTree 	// Adelson - Velsky and Landis
 		BinaryNode newRoot = disBalancedNode.rightChild;
 		disBalancedNode.rightChild = newRoot.leftChild;
 		newRoot.leftChild = disBalancedNode;
-		disBalancedNode.height = 1 + Math.max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild));
+		disBalancedNode.height = 1 + Math.max(getHeight(disBalancedNode.leftChild), getHeight(disBalancedNode.rightChild));
 		newRoot.height = 1 + Math.max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild));
 		return newRoot;
 	}
@@ -72,8 +72,8 @@ public class AVLTree 	// Adelson - Velsky and Landis
 			rootNode.rightChild = insert(rootNode.rightChild, value);
 		}
 		
-		int balance = getBalance(rootNode);
 		rootNode.height = 1 + Math.max(getHeight(rootNode.leftChild), getHeight(rootNode.rightChild));
+		int balance = getBalance(rootNode);
 		
 		if(balance > 1 && value < rootNode.leftChild.value)	// LL Condition.
 		{
