@@ -1,5 +1,8 @@
 package com.avltree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class AVLTree 	// Adelson - Velsky and Landis
 {
 	BinaryNode rootNode;
@@ -16,7 +19,7 @@ public class AVLTree 	// Adelson - Velsky and Landis
 		{
 			return 0;
 		}
-		return 1 + Math.max(getHeight(rootNode.leftChild), getHeight(rootNode.rightChild));
+		return rootNode.height;
 	}
 	
 	// Difference between heights of LeftSubTree and RightSubTree.
@@ -35,8 +38,19 @@ public class AVLTree 	// Adelson - Velsky and Landis
 		BinaryNode newRoot = disBalancedNode.leftChild;
 		disBalancedNode.leftChild = newRoot.rightChild;
 		newRoot.rightChild = disBalancedNode;
-		newRoot.height = 1 + Math.max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild));
 		disBalancedNode.height = 1 + Math.max(getHeight(disBalancedNode.leftChild), getHeight(disBalancedNode.rightChild));
+		newRoot.height = 1 + Math.max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild));
+		return newRoot;
+	}
+	
+	// Left Rotation.
+	public BinaryNode leftRotation(BinaryNode disBalancedNode)
+	{
+		BinaryNode newRoot = disBalancedNode.rightChild;
+		disBalancedNode.rightChild = newRoot.leftChild;
+		newRoot.leftChild = disBalancedNode;
+		disBalancedNode.height = 1 + Math.max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild));
+		newRoot.height = 1 + Math.max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild));
 		return newRoot;
 	}
 	
@@ -47,7 +61,7 @@ public class AVLTree 	// Adelson - Velsky and Landis
 		{
 			BinaryNode newNode = new BinaryNode();
 			newNode.value = value;
-			return rootNode;
+			return newNode;
 		}
 		else if(value < rootNode.value)
 		{
@@ -60,9 +74,55 @@ public class AVLTree 	// Adelson - Velsky and Landis
 		
 		int balance = getBalance(rootNode);
 		rootNode.height = 1 + Math.max(getHeight(rootNode.leftChild), getHeight(rootNode.rightChild));
-		if(balance > 1 && value < rootNode.leftChild.value)
+		
+		if(balance > 1 && value < rootNode.leftChild.value)	// LL Condition.
 		{
-			
+			return rightRotation(rootNode);
+		}
+		if(balance > 1 && value > rootNode.leftChild.value) // LR Condition.
+		{
+			rootNode.leftChild = leftRotation(rootNode.leftChild);
+			return rightRotation(rootNode);
+		}
+		if(balance < -1 && value > rootNode.rightChild.value) // RR Condition.
+		{
+			return leftRotation(rootNode);
+		}
+		if(balance < -1 && value < rootNode.rightChild.value) // RL Condition.
+		{
+			rootNode.rightChild = rightRotation(rootNode.rightChild);
+			return leftRotation(rootNode);
+		}
+		return rootNode;
+	}
+	
+	public void insert(int value)
+	{
+		insert(rootNode, value);
+	}
+	
+	// Level Order Traversal.
+	public void levelOrder(BinaryNode rootNode)
+	{
+		if(rootNode == null)
+		{
+			System.out.println("Tree is Empty !!!");
+			return;
+		}
+		Queue<BinaryNode> queue = new LinkedList<>();
+		queue.add(rootNode);
+		while(!queue.isEmpty())
+		{
+			BinaryNode presentNode = queue.remove();
+			System.out.print(presentNode.value+" ");
+			if(presentNode.leftChild != null)
+			{
+				queue.add(presentNode.leftChild);
+			}
+			if(presentNode.rightChild != null)
+			{
+				queue.add(presentNode.rightChild);
+			}
 		}
 	}
 }
