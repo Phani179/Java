@@ -98,7 +98,7 @@ public class AVLTree 	// Adelson - Velsky and Landis
 	
 	public void insert(int value)
 	{
-		insert(rootNode, value);
+		rootNode = insert(rootNode, value);
 	}
 	
 	// Level Order Traversal.
