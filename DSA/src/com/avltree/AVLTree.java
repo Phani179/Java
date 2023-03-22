@@ -53,7 +53,7 @@ public class AVLTree 	// Adelson - Velsky and Landis
 		newRoot.height = 1 + Math.max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild));
 		return newRoot;
 	}
-	
+		
 	// Insert Node
 	private BinaryNode insert(BinaryNode rootNode, int value)
 	{
@@ -77,28 +77,105 @@ public class AVLTree 	// Adelson - Velsky and Landis
 		
 		if(balance > 1 && value < rootNode.leftChild.value)	// LL Condition.
 		{
-			return rightRotation(rootNode);
+			rootNode = rightRotation(rootNode);
 		}
 		if(balance > 1 && value > rootNode.leftChild.value) // LR Condition.
 		{
 			rootNode.leftChild = leftRotation(rootNode.leftChild);
-			return rightRotation(rootNode);
+			rootNode = rightRotation(rootNode);
 		}
 		if(balance < -1 && value > rootNode.rightChild.value) // RR Condition.
 		{
-			return leftRotation(rootNode);
+			rootNode = leftRotation(rootNode);
 		}
 		if(balance < -1 && value < rootNode.rightChild.value) // RL Condition.
 		{
 			rootNode.rightChild = rightRotation(rootNode.rightChild);
-			return leftRotation(rootNode);
+			rootNode = leftRotation(rootNode);
 		}
 		return rootNode;
-	}
+		
+	} 
 	
 	public void insert(int value)
 	{
 		rootNode = insert(rootNode, value);
+	}
+	
+	// Minimum Node.
+	public BinaryNode minimiNode(BinaryNode node)
+	{
+		if(node.leftChild == null)
+		{
+			return node;
+		}
+		return minimiNode(node.leftChild);
+	}
+	
+	// Delete Node.
+	public BinaryNode deleteNode(BinaryNode rootNode, int value)
+	{
+		if(rootNode == null)
+		{
+			System.out.println("Tree is Empty");
+			return null;
+		}
+		else if(value < rootNode.value)
+		{
+			rootNode.leftChild = deleteNode(rootNode.leftChild, value);
+		}
+		else if(value > rootNode.value)
+		{
+			rootNode.rightChild = deleteNode(rootNode.rightChild, value);
+		}
+		else 
+		{
+			if(rootNode.leftChild != null && rootNode.rightChild!= null)	// Node has two children.
+			{
+				BinaryNode minNodeforRight = minimiNode(rootNode.rightChild);
+				rootNode.value = minNodeforRight.value;
+				rootNode.rightChild = deleteNode(rootNode.rightChild, minNodeforRight.value);
+			}
+			else if (rootNode.leftChild != null) 		// Node has one left children.
+			{	
+				rootNode = rootNode.leftChild;
+			}
+			else if (rootNode.rightChild != null) 		// Node has one right children.
+			{
+				rootNode = rootNode.rightChild;
+			}
+			else										// Node to be deleted is a leaf Node. 
+			{
+				rootNode = null;
+			}
+		}
+		
+		int balance = getBalance(rootNode);
+		
+		if(balance > 1 && getBalance(rootNode.leftChild) > 0)	// LL Condition.
+		{
+			rootNode = rightRotation(rootNode);
+		}
+		if(balance > 1 && getBalance(rootNode.leftChild) < 0)	// LR Condition.
+		{
+			rootNode.leftChild = leftRotation(rootNode.leftChild);
+			rootNode = rightRotation(rootNode);
+		}
+		if(balance < -1 && getBalance(rootNode.rightChild) < 0)	// RR Condition.
+		{
+			rootNode = leftRotation(rootNode);
+		}
+		if(balance < -1 && getBalance(rootNode.rightChild) > 0)	// LR Condition.
+		{
+			rootNode.rightChild = rightRotation(rootNode.rightChild);
+			rootNode = leftRotation(rootNode.rightChild);
+		}
+		return rootNode;
+	}
+	
+	public void deleteNode(int value)
+	{
+		rootNode = deleteNode(rootNode, value);
 	}
 	
 	// Level Order Traversal.

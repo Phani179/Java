@@ -13,5 +13,9 @@ public class RunnerClass
 		avlTree.insert(70);
 		avlTree.insert(80);
 		avlTree.levelOrder(avlTree.rootNode);
+		avlTree.deleteNode(10);
+		System.out.println();
+		avlTree.levelOrder(avlTree.rootNode);
+		System.out.println(avlTree.rootNode.height);
 	}
 }
