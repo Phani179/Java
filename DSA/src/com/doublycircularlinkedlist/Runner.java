@@ -1,4 +1,4 @@
-package doublycircularlinkedlist;
+package com.doublycircularlinkedlist;
 
 public class Runner 
 {
