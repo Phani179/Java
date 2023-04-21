@@ -5,6 +5,11 @@ import java.util.Map;
 
 public class TrieNode 
 {
-	Map<Character, TrieNode> children = new HashMap<>();
+	Map<Character, TrieNode> children;
 	boolean endOfString;
+	
+	public TrieNode() {
+		children = new HashMap<>();
+		endOfString = false;
+	}
 }
